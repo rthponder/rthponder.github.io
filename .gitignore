@@ -1,0 +1,17 @@
+.DS_Store
+*.sublime-workspace
+*.sublime-project
+node_modules/
+__pycache__/
+*.pyc
+*.log
+venv/
+env/
+dist/
+build/
+*.egg-info/
+*.class
+*.o
+*.so
+*~
+*.swp
