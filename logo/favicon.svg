@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64">
+  <style>
+    @media (prefers-color-scheme: dark) {
+      text { fill: white; }
+    }
+    @media (prefers-color-scheme: light) {
+      text { fill: black; }
+    }
+  </style>
+  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle"
+        font-family="Inter, sans-serif" font-size="48">pk</text>
+</svg>
