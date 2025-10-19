@@ -1,7 +1,7 @@
 html {
   font-size: 14px;
   font-family: "Funnel Sans", sans-serif;
-  background-color: #FFF;
+  background-color: #F4F4F4;
   color: #000;
   font-weight: 300;
 }
@@ -16,6 +16,7 @@ body {
   flex-direction: column;
   letter-spacing: -0.022em;
   gap: 2rem;
+  color: #555F6B;
 }
 
 header {
@@ -26,6 +27,7 @@ header .title {
   font-size: 1rem;
   font-weight: 400;
   margin-bottom: 0.5rem;
+  color: #000;
 }
 
 .intro {
@@ -38,11 +40,10 @@ h2 {
   font-weight: 300;
   margin-top: 1rem;
   margin-bottom: 1rem;
-
 }
 
 a {
-  color: #28A745;
+  color: #000;
   text-decoration: none;
 }
 
