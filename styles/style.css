@@ -67,36 +67,3 @@ a:hover {
   z-index: 10;
   text-decoration: none;
 }
-
-. skills {
-	display: flex;
-  gap: 1.5rem;
-  padding-top: 1.5rem;
-  justify-content: flex-start;
-}
-
-footer {
-  display: flex;
-  gap: 1.5rem;
-  padding-top: 1.5rem;
-  justify-content: flex-start;
-  color: #333;
-  font-size: 15px;
-}
-
-footer svg {
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-footer a {
-  color:#333;
-}
-
-footer a:hover {
-  color:#28A745;
-}
-
-footer a:hover svg {
-  transform: scale(1.2);
-}
