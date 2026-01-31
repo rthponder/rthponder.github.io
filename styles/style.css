@@ -78,11 +78,6 @@ a:hover {
   justify-content: flex-start;
 }
 
-.resume {
-	margin-top: 3rem;
-
-}
-
 footer {
   display: flex;
   gap: 1.5rem;
