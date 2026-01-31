@@ -19,9 +19,6 @@ body {
   color: #555F6B;
 }
 
-header {
-	border-bottom: 1px solid #333;
-}
 
 header .title {
   font-size: 1rem;
@@ -82,7 +79,6 @@ footer {
   display: flex;
   gap: 1.5rem;
   padding-top: 1.5rem;
-  border-top: 1px solid #333;
   justify-content: flex-start;
   color: #333;
   font-size: 15px;
