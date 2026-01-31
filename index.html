@@ -3,16 +3,41 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
   <link href="styles/style.css" rel="stylesheet" />
   <title>karthikeya poondla</title>
   <script src="scripts/email-protection.js" defer></script>
   <link rel="icon" href="logo/favicon.svg" type="image/svg+xml">
   <link rel="alternate icon" href="logo/favicon.png" type="image/png">
   <link rel="shortcut icon" href="logo/favicon.ico" type="image/x-icon">
+
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://unpkg.com/cal-heatmap/dist/cal-heatmap.min.js"></script>
+  <script src="https://unpkg.com/@popperjs/core@2"></script>
+  <script src="https://unpkg.com/cal-heatmap/dist/plugins/Tooltip.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/cal-heatmap/dist/cal-heatmap.css">
+
+  <style>
+    /* Styling the heatmap container to match your site's vibe */
+    #heatmap-card {
+      margin-top: 40px;
+      padding: 20px;
+      background: #0d1117;
+      border-radius: 12px;
+      border: 1px solid #30363d;
+      overflow-x: auto;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    
+    /* Ensure the text inside the heatmap uses your font */
+    #cal-heatmap text {
+      font-family: 'JetBrains Mono', monospace !important;
+    }
+  </style>
 </head>
+
 <body>
   <header>
     <h1 class="title">karthikeya poondla</h1>
@@ -27,69 +52,57 @@
       <h2><a href="https://drive.google.com/drive/folders/1bL3WJFdRoB_x13x3IDIvj0qOLh1s8nx0?usp=share_link" target="_blank">cv</a></h2>
       <h2><a id="email-link" title="send me an email" aria-label="you can send me an email">email</a></h2>
       <h2><a href="https://github.com/rthponder" title="github" target="_blank" aria-label="my github profile">github</a></h2>
+      
+      <div id="heatmap-card">
+        <div style="margin-bottom: 15px; color: #8b949e; font-size: 14px;">activity streak</div>
+        <div id="cal-heatmap"></div>
+      </div>
   </main>
-  <div id="cal-heatmap"></div>
 
-<script src="https://d3js.org/d3.v7.min.js"></script>
-<script src="https://unpkg.com/cal-heatmap/dist/cal-heatmap.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/cal-heatmap/dist/cal-heatmap.css">
-
-<div id="heatmap-card" style="padding: 20px; background: #0d1117; border-radius: 12px; border: 1px solid #30363d; overflow-x: auto;">
-  <div id="cal-heatmap"></div>
-</div>
-
-<script src="https://d3js.org/d3.v7.min.js"></script>
-<script src="https://unpkg.com/cal-heatmap/dist/cal-heatmap.min.js"></script>
-<script src="https://unpkg.com/@popperjs/core@2"></script>
-<script src="https://unpkg.com/cal-heatmap/dist/plugins/Tooltip.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/cal-heatmap/dist/cal-heatmap.css">
-
-<script type="module">
-  const cal = new CalHeatmap();
-  cal.paint({
-    itemSelector: "#cal-heatmap",
-    data: {
-      source: 'activity.json',
-      type: 'json',
-      x: 'date',
-      y: 'value'
-    },
-    // Show 6 months on mobile, 12 on desktop
-    range: window.innerWidth < 768 ? 6 : 12,
-    date: { 
-      start: new Date(new Date().setFullYear(new Date().getFullYear() - 1)) 
-    },
-    domain: {
-      type: 'month',
-      gutter: 10,
-      label: { text: 'MMM', position: 'top', textAlign: 'start', fill: '#8b949e' }
-    },
-    subDomain: { 
-      type: 'ghDay', 
-      width: 12, 
-      height: 12, 
-      gutter: 4, 
-      radius: 3 // Rounded corners for a modern look
-    },
-    scale: {
-      color: {
-        type: 'threshold',
-        // Modern "Cyber" Palette (Gray to Neon Green/Blue)
-        range: ['#161b22', '#0e4429', '#006d32', '#26a641', '#39d353'],
-        domain: [1, 2, 5, 10]
+  <script type="module">
+    const cal = new CalHeatmap();
+    cal.paint({
+      itemSelector: "#cal-heatmap",
+      data: {
+        source: 'activity.json',
+        type: 'json',
+        x: 'date',
+        y: 'value'
       },
-    },
-    plugins: [
-      [
-        Tooltip,
-        {
-          text: (date, value, dayjsDate) => {
-            return (value ? value : '0') + ' contributions on ' + dayjsDate.format('MMMM D, YYYY');
-          },
+      range: window.innerWidth < 768 ? 6 : 12,
+      date: { 
+        start: new Date(new Date().setFullYear(new Date().getFullYear() - 1)) 
+      },
+      domain: {
+        type: 'month',
+        gutter: 10,
+        label: { text: 'MMM', position: 'top', textAlign: 'start', fill: '#8b949e' }
+      },
+      subDomain: { 
+        type: 'ghDay', 
+        width: 12, 
+        height: 12, 
+        gutter: 4, 
+        radius: 3 
+      },
+      scale: {
+        color: {
+          type: 'threshold',
+          range: ['#161b22', '#0e4429', '#006d32', '#26a641', '#39d353'],
+          domain: [1, 2, 5, 10]
         },
+      },
+      plugins: [
+        [
+          Tooltip,
+          {
+            text: (date, value, dayjsDate) => {
+              return (value ? value : '0') + ' contributions on ' + dayjsDate.format('MMMM D, YYYY');
+            },
+          },
+        ],
       ],
-    ],
-  });
-</script>
+    });
+  </script>
 </body>
 </html>
