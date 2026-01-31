@@ -1,5 +1,5 @@
 html {
-  font-size: 14px;
+  font-size: 21px;
   font-family: "DM Serif Text", serif;
   background-color: #F4F4F4;
   color: #000;
@@ -36,7 +36,7 @@ header .title {
 }
 
 h2 {
-  font-size: 13px;
+  font-size: 17px;
   font-weight: 300;
   margin-top: 1rem;
   margin-bottom: 1rem;
