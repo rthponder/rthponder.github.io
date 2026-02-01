@@ -8,11 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;800&display=swap" rel="stylesheet">
   <link href="styles/style.css" rel="stylesheet" />
   <title>karthikeya poondla</title>
-  <script src="https://d3js.org/d3.v7.min.js"></script>
-<!-- v6 is also supported -->
-<script src="https://d3js.org/d3.v6.min.js"></script>
-<script src="https://unpkg.com/cal-heatmap/dist/cal-heatmap.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/cal-heatmap/dist/cal-heatmap.css">
+  <script src="scripts/email-protection.js"></script>
 </head>
 <body>
   <header>
@@ -26,72 +22,5 @@
       <h2><a id="email-link">email</a></h2>
       <h2><a href="https://github.com/rthponder" target="_blank">github</a></h2>
   </main>
-  
-  <div id="cal-heatmap"></div>
-  <script>
-    const cal = new CalHeatmap();
-cal.paint(
-  {
-    data: {
-      source: 'activity.json', // Ensure this returns your [{"date": "...", "value": 0}] list
-      type: 'json',
-      x: 'date',
-      y: 'value',           // Changed from temp_max to value
-      groupY: 'sum',        // Usually for contributions, you want the sum per day
-    },
-    date: { start: new Date('2025-01-01') }, // Updated to match your 2025 data
-    range: 12,
-    scale: {
-      color: {
-        type: 'threshold',
-        // Classic GitHub green shades
-        range: ['#1e2c14', '#0e4429', '#006d32', '#26a641', '#39d353'],
-        domain: [1, 5, 10, 20], // Adjust these levels based on your activity volume
-      },
-    },
-    domain: {
-      type: 'month',
-      gutter: 4,
-      label: { text: 'MMM', textAlign: 'start', position: 'top' },
-    },
-    subDomain: { type: 'ghDay', radius: 2, width: 11, height: 11, gutter: 4 },
-    itemSelector: '#ex-ghDay',
-  },
-  [
-    [
-      Tooltip,
-      {
-        text: function (date, value, dayjsDate) {
-          return (
-            (value ? value : 'No') +
-            ' contributions on ' +
-            dayjsDate.format('dddd, MMMM D, YYYY')
-          );
-        },
-      },
-    ],
-    [
-      LegendLite,
-      {
-        includeBlank: true,
-        itemSelector: '#ex-ghDay-legend',
-        radius: 2,
-        width: 11,
-        height: 11,
-        gutter: 4,
-      },
-    ],
-    [
-      CalendarLabel,
-      {
-        width: 30,
-        textAlign: 'start',
-        text: () => dayjs.weekdaysShort().map((d, i) => (i % 2 == 0 ? '' : d)),
-        padding: [25, 0, 0, 0],
-      },
-    ],
-  ]
-);
-  </script>
 </body>
 </html>
